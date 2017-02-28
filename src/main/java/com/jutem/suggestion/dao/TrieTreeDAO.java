@@ -1,7 +1,11 @@
 package com.jutem.suggestion.dao;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.jutem.suggestion.model.TrieNode;
@@ -9,22 +13,35 @@ import com.jutem.suggestion.model.TrieNode;
 @Repository
 public class TrieTreeDAO {
 	
-	private static final String ROOT_ID = "root";
+	private static final ObjectId ROOT_ID = new ObjectId("58b54e10d4c6a062929ba94f");
 	private static final String COL = "suggestion_tree";
 	
 	@Autowired
 	private MongoOperations mongo;
 	
 	public TrieNode findRoot() {
-		return mongo.findById(ROOT_ID, TrieNode.class);
+		return mongo.findById(ROOT_ID, TrieNode.class, COL);
 	}
 	
 	public void addNode(TrieNode node) {
 		mongo.insert(node, COL);
 	}
 
-	public TrieNode findById(String id) {
-		return mongo.findById(id, TrieNode.class);
+	public void updateNode(ObjectId id, TrieNode node) {
+		
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_id").is(id));
+
+		Update update = new Update();
+		update.set("children", node.getChildren());
+		update.set("isLeaf", node.isLeaf());
+		
+		mongo.updateFirst(query, update, COL);
 	}
+
+	public TrieNode findById(Object id) {
+		return mongo.findById(id, TrieNode.class, COL);
+	}
+	
 	
 }

@@ -1,8 +1,6 @@
 package com.jutem.suggestion.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -10,10 +8,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class TrieNode {
+	
+	private ObjectId id;
 	private boolean isLeaf;
 	private char c;
-	private List<TrieNode> children = new ArrayList<TrieNode>(24);
+	private ObjectId[] children = new ObjectId[26];
 
+	public ObjectId getId() {
+		return id;
+	}
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
 	public boolean isLeaf() {
 		return isLeaf;
 	}
@@ -26,10 +32,11 @@ public class TrieNode {
 	public void setC(char c) {
 		this.c = c;
 	}
-	public List<TrieNode> getChildren() {
+	public ObjectId[] getChildren() {
 		return children;
 	}
-	public void setChildren(List<TrieNode> children) {
+	public void setChildren(ObjectId[] children) {
 		this.children = children;
 	}
+
 }

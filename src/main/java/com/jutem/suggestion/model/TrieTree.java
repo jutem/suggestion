@@ -1,9 +1,8 @@
 package com.jutem.suggestion.model;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,37 +29,50 @@ public class TrieTree {
 		if(word == null)
 			throw new RuntimeException("不允许插入空值"); 
 		
-		List<TrieNode> children = root.getChildren();
+		TrieNode parent = root;
 		
 		for(int i = 0; i < word.length(); i++) {
+			ObjectId[] children = parent.getChildren();
+
 			char c = word.charAt(i);
-			int index = 'a' - c;
-			TrieNode node = children.get(index);
-			//TODO persist
-			if(node == null ) {
-				node = new TrieNode();
-				node.setC(c);
-				children.add(index, node);
+			int index = c - 'a';
+			ObjectId childId = children[index];
+			
+			TrieNode child;
+			if(childId == null) {
+				//插入子节点
+				child = new TrieNode();
+				child.setC(c);
+				trieTreeDAO.addNode(child);
+				//更新父节点
+				children[index] = child.getId();
+				trieTreeDAO.updateNode(parent.getId(), parent);
+			} else {
+				child = trieTreeDAO.findById(childId);
 			}
 			
-			children = node.getChildren();
-			if(i == word.length() - 1)
-				node.setLeaf(true);
+			if(i == word.length() - 1) {
+				child.setLeaf(true);
+				trieTreeDAO.updateNode(child.getId(), child);
+			}
+			//切换引用
+			parent = child;
 		}
 	}
 	
 	public TrieNode searchNode(String word) {
 		if(word == null)
 			return null;
-		List<TrieNode> children = root.getChildren();
+		ObjectId[] children = root.getChildren();
 		
 		TrieNode node = null;
 		for(int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
-			int index = 'a' - c;
-			node = children.get(index);
-			if(node == null)
+			int index = c - 'a';
+			ObjectId childId = children[index];
+			if(childId == null)
 				return null;
+			node = trieTreeDAO.findById(childId);
 			children = node.getChildren();
 		}
 		return node;
