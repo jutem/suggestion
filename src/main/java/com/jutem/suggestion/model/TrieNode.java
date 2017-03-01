@@ -12,6 +12,7 @@ public class TrieNode {
 	private ObjectId id;
 	private boolean isLeaf;
 	private char c;
+	private int count;
 	private ObjectId[] children = new ObjectId[26];
 
 	public ObjectId getId() {
@@ -37,6 +38,12 @@ public class TrieNode {
 	}
 	public void setChildren(ObjectId[] children) {
 		this.children = children;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

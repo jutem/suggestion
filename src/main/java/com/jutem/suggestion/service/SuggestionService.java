@@ -1,11 +1,14 @@
 package com.jutem.suggestion.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+public interface SuggestionService {
 
-import com.jutem.suggestion.dao.TrieTreeDAOTest;
+	void findTop(String word, int n);
 
-@Service
-public class SuggestionService {
+	void insert(String word);
 	
+	/**
+	 * 批量生成测试数据的接口
+	 */
+	void insertRandomCases();
+
 }
