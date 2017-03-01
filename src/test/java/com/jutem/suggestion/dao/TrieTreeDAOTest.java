@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jutem.suggestion.base.BaseTest;
-import com.jutem.suggestion.model.TrieNode;
+import com.jutem.suggestion.model.trie.TrieNode;
 
 public class TrieTreeDAOTest extends BaseTest{
 	
@@ -14,6 +14,7 @@ public class TrieTreeDAOTest extends BaseTest{
 	@Test
 	public void addNode() {
 		TrieNode node = new TrieNode();
+		node.setWord("ROOT");
 		dao.addNode(node);
 	}
 	

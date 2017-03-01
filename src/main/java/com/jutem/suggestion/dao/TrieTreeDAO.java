@@ -8,12 +8,12 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import com.jutem.suggestion.model.TrieNode;
+import com.jutem.suggestion.model.trie.TrieNode;
 
 @Repository
 public class TrieTreeDAO {
 	
-	private static final ObjectId ROOT_ID = new ObjectId("58b54e10d4c6a062929ba94f");
+	private static final ObjectId ROOT_ID = new ObjectId("58b6b04d58f2b16ec9adfa59");
 	private static final String COL = "suggestion_tree";
 	
 	@Autowired
@@ -35,6 +35,7 @@ public class TrieTreeDAO {
 		Update update = new Update();
 		update.set("children", node.getChildren());
 		update.set("isLeaf", node.isLeaf());
+		update.set("count", node.getCount());
 		
 		mongo.updateFirst(query, update, COL);
 	}

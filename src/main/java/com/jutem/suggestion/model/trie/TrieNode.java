@@ -1,4 +1,4 @@
-package com.jutem.suggestion.model;
+package com.jutem.suggestion.model.trie;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,9 +11,13 @@ public class TrieNode {
 	
 	private ObjectId id;
 	private boolean isLeaf;
-	private char c;
+	private String word = "";
 	private int count;
-	private ObjectId[] children = new ObjectId[26];
+	private ObjectId[] children = new ObjectId[26]; //26个字母
+	
+	public void incrementCount() {
+		this.count ++;
+	}
 
 	public ObjectId getId() {
 		return id;
@@ -27,11 +31,11 @@ public class TrieNode {
 	public void setLeaf(boolean isLeaf) {
 		this.isLeaf = isLeaf;
 	}
-	public char getC() {
-		return c;
+	public String getWord() {
+		return word;
 	}
-	public void setC(char c) {
-		this.c = c;
+	public void setWord(String word) {
+		this.word = word;
 	}
 	public ObjectId[] getChildren() {
 		return children;

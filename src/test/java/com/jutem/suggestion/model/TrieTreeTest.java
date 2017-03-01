@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jutem.suggestion.base.BaseTest;
+import com.jutem.suggestion.model.trie.TrieNode;
+import com.jutem.suggestion.model.trie.TrieTree;
 
 public class TrieTreeTest extends BaseTest{
 	
@@ -13,12 +15,12 @@ public class TrieTreeTest extends BaseTest{
 
 	@Test
 	public void insert() {
-		trieTree.insert("testas");
+		trieTree.insert("test");
 	}
 	
 	@Test
 	public void searchNode() {
-		TrieNode node = trieTree.searchNode("test");
+		TrieNode node = trieTree.searchNode("ab");
 		Assert.assertNotNull(node);
 	}
 	

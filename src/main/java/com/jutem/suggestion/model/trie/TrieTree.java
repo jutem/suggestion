@@ -1,4 +1,4 @@
-package com.jutem.suggestion.model;
+package com.jutem.suggestion.model.trie;
 
 import javax.annotation.PostConstruct;
 
@@ -42,7 +42,7 @@ public class TrieTree {
 			if(childId == null) {
 				//插入子节点
 				child = new TrieNode();
-				child.setC(c);
+				child.setWord(word.substring(0, i));
 				trieTreeDAO.addNode(child);
 				//更新父节点
 				children[index] = child.getId();
@@ -53,6 +53,7 @@ public class TrieTree {
 			
 			if(i == word.length() - 1) {
 				child.setLeaf(true);
+				child.incrementCount();
 				trieTreeDAO.updateNode(child.getId(), child);
 			}
 			//切换引用
