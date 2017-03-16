@@ -1,5 +1,7 @@
 package com.jutem.suggestion.dao;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -8,7 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import com.jutem.suggestion.model.trie.TrieNode;
+import com.jutem.suggestion.trie.core.TrieNode;
 
 @Repository
 public class TrieTreeDAO {
@@ -21,6 +23,16 @@ public class TrieTreeDAO {
 	
 	public TrieNode findRoot() {
 		return mongo.findById(ROOT_ID, TrieNode.class, COL);
+	}
+	
+	public TrieNode findById(Object id) {
+		return mongo.findById(id, TrieNode.class, COL);
+	}
+	
+	public List<TrieNode> findByIds(List<ObjectId> ids) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_id").in(ids));
+		return mongo.find(query, TrieNode.class);
 	}
 	
 	public void addNode(TrieNode node) {
@@ -39,10 +51,5 @@ public class TrieTreeDAO {
 		
 		mongo.updateFirst(query, update, COL);
 	}
-
-	public TrieNode findById(Object id) {
-		return mongo.findById(id, TrieNode.class, COL);
-	}
-	
 	
 }

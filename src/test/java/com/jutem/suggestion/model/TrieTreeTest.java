@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jutem.suggestion.base.BaseTest;
-import com.jutem.suggestion.model.trie.TrieNode;
-import com.jutem.suggestion.model.trie.TrieTree;
+import com.jutem.suggestion.trie.core.TrieNode;
+import com.jutem.suggestion.trie.core.TrieTree;
 
 public class TrieTreeTest extends BaseTest{
 	
