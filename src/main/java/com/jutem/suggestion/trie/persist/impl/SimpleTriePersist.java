@@ -8,7 +8,7 @@ import com.jutem.suggestion.trie.core.TrieNode;
 import com.jutem.suggestion.trie.core.TrieTree;
 import com.jutem.suggestion.trie.persist.TriePersist;
 
-public class SimpleTriePersistImpl implements TriePersist {
+public class SimpleTriePersist implements TriePersist {
 	
 	private static final String TREE_ID = "NO_1";
 	private static final String COL = "TrieTree";

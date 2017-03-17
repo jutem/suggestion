@@ -21,11 +21,11 @@ public class SuggestionServiceTest extends BaseTest{
 	
 	@Test
 	public void insertTest() {
-		suggestionService.insert("hello");
-		suggestionService.insert("hello");
-		suggestionService.insert("hello");
-		suggestionService.insert("hello");
-		suggestionService.insert("hello");
+		suggestionService.insert("helloabcdefg");
+		suggestionService.insert("helloabcdefg");
+		suggestionService.insert("helloabcdefg");
+		suggestionService.insert("helloabcdefg");
+		suggestionService.insert("helloabcdefg");
 
 		suggestionService.insert("helloa");
 		suggestionService.insert("hellob");
@@ -37,13 +37,13 @@ public class SuggestionServiceTest extends BaseTest{
 	
 	@Test
 	public void findTopKTest() {
-		List<String> result = suggestionService.findTopK("h", 10);
+		List<String> result = suggestionService.findTopK("he", 100);
 		System.out.println("<<<< result : " + JSON.toJSONString(result));
 	}
 	
 	@Test
 	public void searchNode() {
-		TrieNode result = suggestionService.searchNode("hyn");
+		TrieNode result = suggestionService.searchNode("helloa");
 		System.out.println(JSON.toJSON(result));
 	}
 }

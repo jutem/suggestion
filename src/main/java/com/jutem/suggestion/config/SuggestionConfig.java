@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.jutem.suggestion.search.ChildrenSearch;
-import com.jutem.suggestion.search.impl.ChildrenSearchImpl;
+import com.jutem.suggestion.search.impl.DefaultChildrenSearch;
 import com.jutem.suggestion.trie.core.TrieTree;
 import com.jutem.suggestion.trie.persist.TriePersist;
-import com.jutem.suggestion.trie.persist.impl.SimpleTriePersistImpl;
+import com.jutem.suggestion.trie.persist.impl.SimpleTriePersist;
 
 @Configuration
 @ComponentScan("com.jutem.suggestion") 
@@ -18,12 +18,12 @@ public class SuggestionConfig {
 	
 	@Bean
 	public TriePersist triePersist() {
-		return new SimpleTriePersistImpl(); 
+		return new SimpleTriePersist(); 
 	}
 	
 	@Bean
 	public ChildrenSearch childrenSearch() {
-		return new ChildrenSearchImpl();
+		return new DefaultChildrenSearch();
 	}
 	
 	@Bean

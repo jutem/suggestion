@@ -16,7 +16,7 @@ import com.jutem.suggestion.exceptionn.SuggestionException;
 import com.jutem.suggestion.search.ChildrenSearch;
 import com.jutem.suggestion.trie.core.TrieNode;
 
-public class ChildrenSearchImpl implements ChildrenSearch {
+public class DefaultChildrenSearch implements ChildrenSearch {
 	
 	private ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
 	//每个子节点超时时间
