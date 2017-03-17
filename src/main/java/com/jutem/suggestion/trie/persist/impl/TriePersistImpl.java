@@ -10,13 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.stereotype.Repository;
 
 import com.jutem.suggestion.exceptionn.SuggestionException;
 import com.jutem.suggestion.trie.core.TrieNode;
 import com.jutem.suggestion.trie.core.TrieTree;
 import com.jutem.suggestion.trie.persist.TriePersist;
 
+/**
+ * 尚未完成
+ */
 public class TriePersistImpl implements TriePersist {
 	
 	private static final ObjectId ROOT_ID = new ObjectId("58b6b04d58f2b16ec9adfa59");
