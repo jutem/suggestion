@@ -9,8 +9,9 @@
 	<properties>
 		<spring.version>4.1.7.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
-		<servletapi.version>2.5</servletapi.version>
+		<servletapi.version>3.1.0</servletapi.version>
 		<jdk.version>1.8</jdk.version>
+		<jackson.version>2.4.3</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -44,8 +45,13 @@
 		<!-- servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>${servletapi.version}</version>
 		</dependency>
 
 		<!-- json -->
@@ -53,6 +59,17 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.28</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- test -->
