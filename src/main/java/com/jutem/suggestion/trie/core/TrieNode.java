@@ -20,7 +20,6 @@ public class TrieNode implements Comparable<TrieNode>{
 		this.count ++;
 	}
 	
-	@Override
 	public int compareTo(TrieNode o) {
 		if(this.count > o.getCount())
 			return -1;
