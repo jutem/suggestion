@@ -3,18 +3,20 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<script src="${ctx}/static/jquery-3.2.0.min.js"></script>
+<link rel="stylesheet" href="${ctx}/static/css/jquery-ui.min.css">
+
+<script src="${ctx}/static/js/jquery/jquery-3.2.0.min.js"></script>
+<script src="${ctx}/static/js/jquery/jquery-ui.min.js"></script>
 
 <html>
 <body>
 <h1>auto complete</h1>
-<input id="searchInput" type="text" autocomplete="off" ajax="true" url="/findTopK?k=5" paramname="word"/>
+<input id="searchInput" type="text" onkeyup="autoComplete()"/>
 </body>
 </html>
 
 <script>
     function autoComplete() {
-        console.log("auto Complete start");
         var word = $("#searchInput").val();
         $.ajax({
             type : "get",
@@ -22,7 +24,9 @@
             dataType : "json",
             data : {word : word, k : 5},
             success : function(data) {
-                console.log(data);
+                $("#searchInput").autocomplete({
+                    source:data
+                });
             },
             error: function () {
                 alert("服务器发送错误");
