@@ -1,4 +1,4 @@
-package com.jutem.suggestion.search.impl;
+package com.jutem.suggestion.trie.search.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +13,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import com.jutem.suggestion.exceptionn.SuggestionException;
-import com.jutem.suggestion.search.ChildrenSearch;
+import com.jutem.suggestion.trie.search.ChildrenSearch;
 import com.jutem.suggestion.trie.core.TrieNode;
 
 public class DefaultChildrenSearch implements ChildrenSearch {

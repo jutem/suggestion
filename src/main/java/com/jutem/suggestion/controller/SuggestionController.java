@@ -4,6 +4,7 @@ import com.jutem.suggestion.service.SuggestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,4 +27,12 @@ public class SuggestionController {
         return suggestionService.findTopK(word, k);
     }
 
+    @RequestMapping(value = "/insertWord")
+    @ResponseBody
+    public boolean insertWord(String word) {
+        if(StringUtils.isEmpty(word))
+            return false;
+        suggestionService.insertWord(word);
+        return true;
+    }
 }

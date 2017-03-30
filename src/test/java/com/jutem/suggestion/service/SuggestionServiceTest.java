@@ -21,16 +21,16 @@ public class SuggestionServiceTest extends BaseTest{
 	
 	@Test
 	public void insertTest() {
-		suggestionService.insert("helloabcdefg");
-		suggestionService.insert("helloabcdefg");
-		suggestionService.insert("helloabcdefg");
-		suggestionService.insert("helloabcdefg");
-		suggestionService.insert("helloabcdefg");
+		suggestionService.insertWord("helloabcdefg");
+		suggestionService.insertWord("helloabcdefg");
+		suggestionService.insertWord("helloabcdefg");
+		suggestionService.insertWord("helloabcdefg");
+		suggestionService.insertWord("helloabcdefg");
 
-		suggestionService.insert("helloa");
-		suggestionService.insert("hellob");
-		suggestionService.insert("helloc");
-		suggestionService.insert("hellod");
+		suggestionService.insertWord("helloa");
+		suggestionService.insertWord("hellob");
+		suggestionService.insertWord("helloc");
+		suggestionService.insertWord("hellod");
 
 		suggestionService.saveTree();
 	}

@@ -1,21 +1,20 @@
 package com.jutem.suggestion.trie.core;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.jutem.suggestion.exceptionn.SuggestionException;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.jutem.suggestion.exceptionn.SuggestionException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 字典树
  */
 @Document
 public class TrieTree {
-	
+
 	private String id;
 	private TrieNode root;
-	
+
 	public TrieTree(TrieNode root) {
 		if(root == null)
 			throw new SuggestionException("empty root");
@@ -24,7 +23,7 @@ public class TrieTree {
 	
 	public void insert(String word) {
 		if(word == null)
-			throw new RuntimeException("不允许插入空值"); 
+			throw new RuntimeException("不允许插入空值");
 		
 		Map<Character, TrieNode> children = root.getChildren();
 		

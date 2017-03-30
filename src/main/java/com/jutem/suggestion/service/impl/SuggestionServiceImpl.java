@@ -1,19 +1,19 @@
 package com.jutem.suggestion.service.impl;
 
+import com.jutem.suggestion.service.SuggestionService;
+import com.jutem.suggestion.trie.core.TrieNode;
+import com.jutem.suggestion.trie.core.TrieTree;
+import com.jutem.suggestion.trie.handler.InsertWordHandler;
+import com.jutem.suggestion.trie.persist.TriePersist;
+import com.jutem.suggestion.trie.search.ChildrenSearch;
+import com.jutem.suggestion.util.CommonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.jutem.suggestion.search.ChildrenSearch;
-import com.jutem.suggestion.service.SuggestionService;
-import com.jutem.suggestion.trie.core.TrieNode;
-import com.jutem.suggestion.trie.core.TrieTree;
-import com.jutem.suggestion.trie.persist.TriePersist;
-import com.jutem.suggestion.util.CommonUtil;
 
 @Service
 public class SuggestionServiceImpl implements SuggestionService{
@@ -23,13 +23,16 @@ public class SuggestionServiceImpl implements SuggestionService{
 	
 	@Autowired
 	private TriePersist triePersist;
+
+	@Autowired
+	private InsertWordHandler insertWordHandler;
 	
 	@Autowired
 	private ChildrenSearch childrenSearch;
 
 	@Override
-	public void insert(String word) {
-		trieTree.insert(word);
+	public void insertWord(String word) {
+		insertWordHandler.insertWord(word);
 	}
 	
 	@Override
@@ -57,13 +60,13 @@ public class SuggestionServiceImpl implements SuggestionService{
 			result.add(node.getWord());
 		return result;
 	}
-	
+
 	@Override
 	public void insertRandomCases(int num) {
 		for(int i = 0; i < num; i++) {
 			int sLength = ThreadLocalRandom.current().nextInt(3, 8);
 			String word = CommonUtil.RandomString(sLength);
-			insert(word);
+			insertWord(word);
 		}
 		triePersist.saveTree(trieTree);
 	}

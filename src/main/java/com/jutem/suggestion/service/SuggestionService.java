@@ -1,27 +1,21 @@
 package com.jutem.suggestion.service;
 
-import java.util.List;
-
 import com.jutem.suggestion.trie.core.TrieNode;
+
+import java.util.List;
 
 public interface SuggestionService {
 
 	/**
 	 * 查询拥有word为前缀的，出现此处最多的k个字符串
-	 * @return 
 	 */
 	List<String> findTopK(String word, int K);
 
 	/**
 	 * 插入字符串
 	 */
-	void insert(String word);
+	void insertWord(String word);
 	
-	/**
-	 * 批量生成测试数据的接口
-	 */
-	void insertRandomCases(int num);
-
 	/**
 	 * 查询word的节点
 	 */
@@ -31,4 +25,10 @@ public interface SuggestionService {
 	 * 保存当前内存中的树
 	 */
 	void saveTree();
+
+	/**
+	 * 批量生成测试数据的接口
+	 * 测试接口
+	 */
+	void insertRandomCases(int num);
 }
