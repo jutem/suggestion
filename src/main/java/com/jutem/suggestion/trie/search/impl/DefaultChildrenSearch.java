@@ -19,7 +19,7 @@ import com.jutem.suggestion.trie.core.TrieNode;
 public class DefaultChildrenSearch implements ChildrenSearch {
 	
 	private ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
-	//每个子节点超时时间
+	//总超时时间
 	private static final int TIME_OUT = 10;
 	//查找最长的深度
 	private static final int MAX_DEEP = 10;
@@ -41,10 +41,7 @@ public class DefaultChildrenSearch implements ChildrenSearch {
 		List<Future<List<TrieNode>>> futures;
 		try {
 			//timeout为所有任务执行完成的总超时时间
-			long start = System.currentTimeMillis();
 			futures = pool.invokeAll(works, TIME_OUT, TimeUnit.MILLISECONDS);
-			long end = System.currentTimeMillis();
-			System.out.println("<<<< end : " + (end - start));
 		} catch(Exception e) {
 			throw new SuggestionException(e.getCause());
 		}
