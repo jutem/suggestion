@@ -2,6 +2,9 @@ package com.jutem.suggestion.util;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * 通用工具
+ */
 public class CommonUtil {
 	
 	//a
